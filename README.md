@@ -52,6 +52,8 @@
   - [キースイッチ、電池を差し込む](#キースイッチ電池を差し込む)
   - [ファームウェアを書き込む](#ファームウェアを書き込む)
     - [BLE Micro Proの場合](#ble-micro-proの場合)
+      - [完全無線構成の場合](#完全無線構成の場合)
+      - [部分無線構成の場合](#部分無線構成の場合)
     - [Pro Microの場合(暫定対応)](#pro-microの場合暫定対応)
 
 ## キット内容品
@@ -198,10 +200,18 @@
 ### ファームウェアを書き込む
 
 #### BLE Micro Proの場合
-- BLE Micro Pro WebConfiguratorからファームウェアを書き込んでQMK Configuratorからキーマップを設定してください
-  - 完全無線構成かつトラックパッド構成の場合は右手側をマスターにしてください
+- [BLE Micro Pro WebConfigurator](https://sekigon-gonnoc.github.io/BLE-Micro-Pro-WebConfigurator)からファームウェアを書き込んで[QMK Configurator]()からキーマップを設定してください
+  - 上の手順で電池残量測定用の修正をした場合は電源ON時に点滅回数で電池残量を表示します
   - BLE Micro Proをスリープ状態から復帰させるにはBLE Micro Proを取り付けた側の5列目のスイッチのいずれかを押してくだい
-  - 2台構成の場合はマスターのみ電源ON状態にしてTRRSケーブルで左右を接続することで部分無線構成として使うこともできます
+  - トラックパッドをデバッグするときはCLIから`debug mouse`を実行してください
+
+##### 完全無線構成の場合
+  - WebConfiguratorでは`toybox`を選択して設定してください
+  - 完全無線構成かつトラックパッド構成の場合は右手側がマスターになります(config.jsonの設定はファームウェアが上書きします)
+  - マスターのみ電源ON状態にしてTRRSケーブルで左右を接続することで部分無線構成として使うこともできます
+
+##### 部分無線構成の場合
+  - WebConfiguratorでは`toybox_single`を選択して設定してください
 
 #### Pro Microの場合(暫定対応)
 - QMK公式にはマージされていません。[こちらのフォーク](https://github.com/sekigon-gonnoc/qmk_firmware/tree/dev/ble_micro_pro)からソースコードを取得してビルド、書き込みしてください                    
